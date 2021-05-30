@@ -1,0 +1,7 @@
+{
+  "rfweaponry.lasersoundfx": {
+    "category": "player",
+    "subtitle": "rfweaponry.lasersoundfx.sub",
+    "sounds": [ {"name": "rfweaponry:lasersoundfx", "stream": true}]
+  }
+}

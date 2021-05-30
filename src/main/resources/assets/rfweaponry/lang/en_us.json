@@ -1,0 +1,9 @@
+{
+	"item.rfweaponry.gun_item": "Laser Gun",
+	"item.rfweaponry.pistol_item_i": "Laser Pistol",
+	"block.rfweaponry.power_block": "Power Block",
+	"tile.rfweaponry.power_block": "Power Block",
+	"rfweaponry.lasersoundfx": "Laser Sound",
+	"rfweaponry.lasersoundfx.sub": "Laser Fires"
+	
+}

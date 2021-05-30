@@ -1,0 +1,57 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.pistolshotentity.pulsate": {
+			"loop": true,
+			"animation_length": 1,
+			"bones": {
+				"pulsate1": {
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.24": {
+							"vector": [1.3, 1.3, 1.3]
+						},
+						"0.52": {
+							"vector": [1, 1, 1]
+						},
+						"0.76": {
+							"vector": [1.3, 1.3, 1.3]
+						},
+						"1.0": {
+							"vector": [1, 1, 1]
+						}
+					}
+				},
+				"pulsate2": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.52": {
+							"vector": [0.1, -0.1, -0.1]
+						},
+						"1.0": {
+							"vector": [0, 0, 0]
+						}
+					},
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.52": {
+							"vector": [1.2, 1.2, 1.2]
+						},
+						"1.0": {
+							"vector": [1, 1, 1]
+						}
+					}
+				}
+			}
+		},
+		"animation.pistolshotentitymodel.pulsate": {
+			"loop": true
+		}
+	}
+}

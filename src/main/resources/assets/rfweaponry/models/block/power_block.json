@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "rfweaponry:blocks/power_block"
+    }
+}

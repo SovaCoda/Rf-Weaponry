@@ -1,0 +1,15 @@
+#Anything that is optional which you are not using, just delete that line. You can also delete any of the '#comments'
+ 
+modLoader="javafml" #mandatory
+loaderVersion="[36,)" #mandatory
+license="All rights reserved" #mandatory https://choosealicense.com/
+ 
+[[mods]] #mandatory
+modId="rfweaponry" #mandatory
+version="1.0.0" #mandatory
+displayName="RF Weaponry" #mandatory
+credits="Special thanks to your mother." #optional
+authors="Conner, Alex, Dylan" #optional
+description='''
+Adds more weapons that use RF energy into the game.
+''' #mandatory

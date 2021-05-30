@@ -1,0 +1,76 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.lasergunmodel.charge": {
+			"loop": "hold_on_last_frame",
+			"animation_length": 0.12,
+			"bones": {
+				"BottomBarrels": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.04": {
+							"vector": [0, -0.3, 0],
+							"easing": "linear"
+						},
+						"0.08": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"TopBarrels": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.04": {
+							"vector": [0, 0.2, 0],
+							"easing": "linear"
+						},
+						"0.08": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"Laser": {
+					"scale": {
+						"0.0": {
+							"vector": [1, 1, 1]
+						},
+						"0.04": {
+							"vector": [1, 1, -6.3],
+							"easing": "linear"
+						},
+						"0.08": {
+							"vector": [1, 1, 1]
+						}
+					}
+				}
+			}
+		},
+		"animation.lasergunmodel.idle": {
+			"loop": true,
+			"animation_length": 1.88
+		},
+		"animation.lasergunmodel.shoot": {
+			"animation_length": 0.10053,
+			"bones": {
+				"bone": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"0.04": {
+							"vector": [0, 0, 0.7]
+						},
+						"0.12": {
+							"vector": [0, 0, 0]
+						}
+					}
+				}
+			}
+		}
+	},
+	"geckolib_format_version": 2
+}
