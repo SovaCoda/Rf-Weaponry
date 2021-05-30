@@ -26,5 +26,7 @@ public class Iteminit {
 	public static final RegistryObject<PistolItemI> PISTOL_ITEM_I = ITEMS.register("pistol_item_i", 
 			() -> new PistolItemI(new Item.Properties().tab(ItemGroup.TAB_MISC).setISTER(() -> LaserPistolIRenderer::new)));
 	
-	public static final RegistryObject<SpecialItem> GUN_ITEM_REF = RegistryObject.of(new ResourceLocation("rfweaponry:gun_item"), ForgeRegistries.ITEMS);
+	//Hellllllloooo
+	
+
 }
