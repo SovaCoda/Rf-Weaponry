@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.PacketDistributor;
 import software.bernie.geckolib3.core.AnimationState;
@@ -66,7 +67,7 @@ public class PistolItemI extends RFGunItem implements IAnimatable, ISyncable{
     
 	@Override
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-
+		
 		if(!worldIn.isClientSide) {
 			
 			LaserPistolIShotEntity shot = new LaserPistolIShotEntity(worldIn, playerIn );

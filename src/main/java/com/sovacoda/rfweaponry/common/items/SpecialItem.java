@@ -22,6 +22,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -160,6 +161,7 @@ public class SpecialItem extends Item implements IAnimatable, ISyncable, ITickab
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
 
 		playerIn.startUsingItem(handIn);
+		
 
 		return ActionResult.fail(playerIn.getItemInHand(handIn));
 	}

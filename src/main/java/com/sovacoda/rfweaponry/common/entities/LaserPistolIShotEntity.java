@@ -1,29 +1,42 @@
 package com.sovacoda.rfweaponry.common.entities;
 
+import java.util.List;
+import java.util.function.Predicate;
+
 import com.sovacoda.rfweaponry.core.init.EntityTypeinit;
+import com.sovacoda.rfweaponry.core.util.MyProjectileHelper;
 
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.Minecraft;
+import net.minecraft.command.arguments.EntitySelector;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityPredicate;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.AbstractArrowEntity;
 import net.minecraft.entity.projectile.ProjectileHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.IPacket;
+import net.minecraft.particles.ParticleTypes;
 import net.minecraft.particles.RedstoneParticleData;
 import net.minecraft.tileentity.EndGatewayTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceContext;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.command.EntitySelectorManager;
+import net.minecraftforge.common.command.IEntitySelectorType;
 import net.minecraftforge.fml.network.NetworkHooks;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -77,6 +90,79 @@ public class LaserPistolIShotEntity extends AbstractArrowEntity implements IAnim
 	protected float getGravity() {
       return 0.03F;
 	}
+	
+	
+	
+	
+	
+	
+	public void findTarget() {
+		
+		World world = this.level;
+		
+		
+		double scanScale = 10;
+		
+	    double x = (double)this.getX();
+	    double y = (double)this.getY();
+	    double z = (double)this.getZ();
+	    
+	    //Create a new bounding box to scan for projectiles of the same class around the shot
+	    AxisAlignedBB scanArea = new AxisAlignedBB(x - scanScale, y - scanScale, z - scanScale, x + scanScale, y + scanScale, z + scanScale);
+		//Scan the area in the bounding box for shots
+		List<LaserPistolIShotEntity> entities = world.getEntitiesOfClass(LaserPistolIShotEntity.class, scanArea);
+		
+		if(!entities.isEmpty()) {
+			for(int i = 0; i < entities.size(); i++) {
+				if(!entities.get(i).equals(this)) {
+					
+				   //Loop through the shot's targets and get the shots position as well as the targets
+	               Vector3d origin = this.getPosition(0.0f);
+	               Vector3d target = entities.get(i).getPosition(0.0f);
+	               
+	               
+	               //Find the distance between the original shot and its target
+	               Vector3d distance = origin.vectorTo(target);
+	               
+	               RayTraceResult ray = MyProjectileHelper.getHitResult(this.getEntity(), this::canHitEntity, target);
+
+	               
+	               
+	               //Create a new bounding box with one corner being the original shot's position and the other being the target's position
+	               //AxisAlignedBB between = new AxisAlignedBB(origin, target);
+	               
+	               //Create a list of all entities within the bounding box
+	               //List<Entity> targets = world.getEntities(null, between);
+	               
+	               //Loop through all entites within the bounding box
+	               //for(int i2 = 0; i2 < targets.size(); i2++) {
+	            	   
+	            	   //Raytrace to check if the line between the original shot and  its target hits the entity found
+	            	   //if(targets.get(i2).getBoundingBox().clip(origin, target) != null) {
+	            		  // if (!targets.get(i2).getEntity().equals(this.getEntity()))
+	            		   //{
+	            			   //Do damage to the entity found if it is not a projectile
+            				   //targets.get(i2).hurt(DamageSource.MAGIC, 3);
+
+	            		   //}
+	            	   //}
+	               //}
+	               
+	               //Divide the distance up into 16 divisions
+	               double divX = distance.x/16;
+	               double divY = distance.y/16;
+	               double divZ = distance.z/16;
+	               
+	               //Make a particle at each division to give the illusion of a line
+	               for(int i1 = 1; i1 < 16; i1++) {
+	            	   this.level.addParticle(ParticleTypes.CRIT,this.getX() + (divX * i1), this.getY() + (divY * i1), this.getZ() + (divZ * i1), 0, 0, 0);
+	               }
+	               
+				}
+				
+			}
+		}
+	}
 
 	
    @Override
@@ -98,6 +184,7 @@ public class LaserPistolIShotEntity extends AbstractArrowEntity implements IAnim
 
             flag = true;
          }
+         
       }
 
       if (raytraceresult.getType() != RayTraceResult.Type.MISS && !flag && !net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult)) {
@@ -128,6 +215,8 @@ public class LaserPistolIShotEntity extends AbstractArrowEntity implements IAnim
       if(this.timeinair > 200) {
     	  this.remove();
       }
+      
+      this.findTarget();
       
       this.level.addParticle(new RedstoneParticleData(1F,1F,1F,1F),this.getX(), this.getY(), this.getZ(), 0, 0, 0);
    }
