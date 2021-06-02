@@ -179,6 +179,7 @@ public class LaserEntity extends AbstractArrowEntity implements IAnimatable{
 	
    @Override
 	protected void onHitEntity(EntityRayTraceResult p_213868_1_) {
+	   this.setSoundEvent(null);
 		super.onHitEntity(p_213868_1_);
 		p_213868_1_.getEntity().invulnerableTime = 0;
 		Entity entity = this.getOwner();

@@ -11,6 +11,7 @@ import com.sovacoda.rfweaponry.common.entities.LaserPistolIShotEntity;
 
 import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
@@ -27,6 +28,13 @@ public class LaserPistolIShotRenderer extends GeoProjectilesRenderer<LaserPistol
 	public LaserPistolIShotRenderer(EntityRendererManager renderManager) {
 		super(renderManager, new LaserPistolIShotModel());
 		this.shadowRadius = 0.7f;
+	}
+	
+	@Override
+	public void render(LaserPistolIShotEntity entityIn, float entityYaw, float partialTicks, MatrixStack matrixStackIn,
+			IRenderTypeBuffer bufferIn, int packedLightIn) {
+		super.render(entityIn, entityYaw, partialTicks, matrixStackIn, bufferIn, packedLightIn);
+		Tessellator tessellator = Tessellator.getInstance();
 	}
 
 

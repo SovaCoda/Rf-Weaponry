@@ -136,30 +136,7 @@ public class LaserPistolIShotEntity extends AbstractArrowEntity implements IAnim
 	            		   Mob.hurt(DamageSource.MAGIC, 4);   
 	            	   }
 	               }
-	          
-
-	               
-	               
-	               //Create a new bounding box with one corner being the original shot's position and the other being the target's position
-	               //AxisAlignedBB between = new AxisAlignedBB(origin, target);
-	               
-	               //Create a list of all entities within the bounding box
-	               //List<Entity> targets = world.getEntities(null, between);
-	               
-	               //Loop through all entites within the bounding box
-	               //for(int i2 = 0; i2 < targets.size(); i2++) {
-	            	   
-	            	   //Raytrace to check if the line between the original shot and  its target hits the entity found
-	            	   //if(targets.get(i2).getBoundingBox().clip(origin, target) != null) {
-	            		  // if (!targets.get(i2).getEntity().equals(this.getEntity()))
-	            		   //{
-	            			   //Do damage to the entity found if it is not a projectile
-            				   //targets.get(i2).hurt(DamageSource.MAGIC, 3);
-
-	            		   //}
-	            	   //}
-	               //}
-	               
+	           
 	               //Divide the distance up into 16 divisions
 	               double divX = distance.x/16;
 	               double divY = distance.y/16;
@@ -250,6 +227,7 @@ public class LaserPistolIShotEntity extends AbstractArrowEntity implements IAnim
 
    @Override
 	protected void onHitEntity(EntityRayTraceResult p_213868_1_) {
+	   this.setSoundEvent(null);
 		super.onHitEntity(p_213868_1_);
 		p_213868_1_.getEntity().invulnerableTime = 0;
 		Entity entity = this.getOwner();
