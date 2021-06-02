@@ -16,7 +16,7 @@ public class MyProjectileHelper {
 		      if (raytraceresult.getType() != RayTraceResult.Type.MISS) {
 		         target = raytraceresult.getLocation();
 		      }
-
+		      
 		      RayTraceResult raytraceresult1 = ProjectileHelper.getEntityHitResult(world, shooter, shooter.getPosition(0), target, shooter.getBoundingBox(), predicate);
 		      if (raytraceresult1 != null) {
 		         raytraceresult = raytraceresult1;

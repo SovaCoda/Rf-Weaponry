@@ -124,7 +124,19 @@ public class LaserPistolIShotEntity extends AbstractArrowEntity implements IAnim
 	               //Find the distance between the original shot and its target
 	               Vector3d distance = origin.vectorTo(target);
 	               
-	               RayTraceResult ray = MyProjectileHelper.getHitResult(this.getEntity(), this::canHitEntity, target);
+//	               RayTraceResult ray = MyProjectileHelper.getHitResult(this.getEntity(), this::canHitEntity, target);
+	               // Uses ProjectileHelper function to get entities hit
+	               EntityRayTraceResult ray = ProjectileHelper.getEntityHitResult(world, this.getEntity(), origin, target, scanArea,this::canHitEntity);
+	               
+	               //check if the entity ray trace result is not null (will cause crash if this is not checked)
+	               if (ray != null) {
+	            	   Entity Mob = ray.getEntity();
+	            	   //does not do damage to owner
+	            	   if (Mob != this.getOwner()) {
+	            		   Mob.hurt(DamageSource.MAGIC, 4);   
+	            	   }
+	               }
+	          
 
 	               
 	               

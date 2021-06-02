@@ -70,9 +70,12 @@ public class PistolItemI extends RFGunItem implements IAnimatable, ISyncable{
 		
 		if(!worldIn.isClientSide) {
 			
-			LaserPistolIShotEntity shot = new LaserPistolIShotEntity(worldIn, playerIn );
-			shot.shootFromRotation(playerIn ,playerIn.xRot, playerIn.yRot, 0, 0.3F, 0);
-			worldIn.addFreshEntity(shot);
+			LaserPistolIShotEntity shot1 = new LaserPistolIShotEntity(worldIn, playerIn );
+			LaserPistolIShotEntity shot2 = new LaserPistolIShotEntity(worldIn, playerIn );
+			shot1.shootFromRotation(playerIn ,playerIn.xRot, playerIn.yRot+15, 0, 0.3F, 0);
+			shot2.shootFromRotation(playerIn ,playerIn.xRot, playerIn.yRot-15, 0, 0.3F, 0);
+			worldIn.addFreshEntity(shot1);
+			worldIn.addFreshEntity(shot2);
 		}
 		return ActionResult.fail(playerIn.getItemInHand(handIn));
 	}
