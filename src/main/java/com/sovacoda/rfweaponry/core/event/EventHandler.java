@@ -33,8 +33,8 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public static void onBlockBreak(final BlockEvent.BreakEvent event) {
-		if(event.getState().getBlock().equals(Blocks.OAK_LOG))
-		event.getPlayer().addItem(ForgeRegistries.ITEMS.getValue(Iteminit.GUN_ITEM_REF.getId()).getDefaultInstance());
+		//if(event.getState().getBlock().equals(Blocks.OAK_LOG))
+		//event.getPlayer().addItem(ForgeRegistries.ITEMS.getValue(Iteminit.GUN_ITEM_REF.getId()).getDefaultInstance());
 	}
 	
 	@SubscribeEvent

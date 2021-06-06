@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.PacketDistributor;
 import software.bernie.geckolib3.core.AnimationState;
@@ -66,12 +67,15 @@ public class PistolItemI extends RFGunItem implements IAnimatable, ISyncable{
     
 	@Override
 	public ActionResult<ItemStack> use(World worldIn, PlayerEntity playerIn, Hand handIn) {
-
+		
 		if(!worldIn.isClientSide) {
 			
-			LaserPistolIShotEntity shot = new LaserPistolIShotEntity(worldIn, playerIn );
-			shot.shootFromRotation(playerIn ,playerIn.xRot, playerIn.yRot, 0, 0.3F, 0);
-			worldIn.addFreshEntity(shot);
+			LaserPistolIShotEntity shot1 = new LaserPistolIShotEntity(worldIn, playerIn );
+			LaserPistolIShotEntity shot2 = new LaserPistolIShotEntity(worldIn, playerIn );
+			shot1.shootFromRotation(playerIn ,playerIn.xRot, playerIn.yRot+15, 0, 0.3F, 0);
+			shot2.shootFromRotation(playerIn ,playerIn.xRot, playerIn.yRot-15, 0, 0.3F, 0);
+			worldIn.addFreshEntity(shot1);
+			worldIn.addFreshEntity(shot2);
 		}
 		return ActionResult.fail(playerIn.getItemInHand(handIn));
 	}
