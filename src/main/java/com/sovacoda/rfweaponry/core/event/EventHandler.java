@@ -1,7 +1,7 @@
 package com.sovacoda.rfweaponry.core.event;
 
 import com.sovacoda.rfweaponry.Rfweaponry;
-import com.sovacoda.rfweaponry.common.items.SpecialItem;
+import com.sovacoda.rfweaponry.common.items.AssaultRife;
 import com.sovacoda.rfweaponry.core.init.Iteminit;
 import com.sovacoda.rfweaponry.core.network.NewNetwork;
 import com.sovacoda.rfweaponry.core.network.message.AnimMessage;

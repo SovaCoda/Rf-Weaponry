@@ -5,13 +5,17 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import org.lwjgl.glfw.GLFW;
+
 import com.sovacoda.rfweaponry.client.render.item.LaserGunRenderer;
 import com.sovacoda.rfweaponry.common.entities.LaserEntity;
 import com.sovacoda.rfweaponry.core.capabilites.EnergyItemCapability;
 import com.sovacoda.rfweaponry.core.init.SoundEventinit;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.ITickable;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.client.util.InputMappings;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -26,6 +30,8 @@ import net.minecraft.util.math.EntityRayTraceResult;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -46,30 +52,37 @@ import software.bernie.geckolib3.network.ISyncable;
 import software.bernie.geckolib3.util.GeckoLibUtil;
 
 
-public class SpecialItem extends Item implements IAnimatable, ISyncable, ITickable{
+public class AssaultRife extends Item implements IAnimatable, ISyncable, ITickable{
+	
+    public AnimationFactory factory = new AnimationFactory(this);
+    public String controllerName = "controller";
+    public static final int ANIM_OPEN = 0;
+    
+    public int useTime = 7200;
 	
 	
-    public SpecialItem(Properties properties)
+    public AssaultRife(Properties properties)
     {
         super(properties.stacksTo(1));
         GeckoLibNetwork.registerSyncable(this);
     }
     
     @Override
+    @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, World p_77624_2_, List<ITextComponent> tooltip, ITooltipFlag p_77624_4_) {
         stack.getCapability(CapabilityEnergy.ENERGY).ifPresent(cap -> {
             NumberFormat format = NumberFormat.getInstance();
             // todo: migrate to i18n
             tooltip.add(new StringTextComponent(String.format("%s/%s Redstone Flux", format.format(cap.getEnergyStored()), format.format(cap.getMaxEnergyStored()))));
+            if (InputMappings.isKeyDown(Minecraft.getInstance().getWindow().getWindow(), GLFW.GLFW_KEY_LEFT_SHIFT)) {
+            	tooltip.add(new StringTextComponent("test"));
+            }
+            else {
+            	tooltip.add(new StringTextComponent("Hold "+ "\u00A7e"+"Shift"+"\u00A7f"+" for More Information"));
+            }
         });
     }
 	
-    
-    public AnimationFactory factory = new AnimationFactory(this);
-    public String controllerName = "controller";
-    public static final int ANIM_OPEN = 0;
-    
-    public int useTime = 7200;
     
     private <P extends Item & IAnimatable> PlayState predicate(AnimationEvent<P> event) 
     {
@@ -189,7 +202,7 @@ public class SpecialItem extends Item implements IAnimatable, ISyncable, ITickab
 		private final LazyOptional<EnergyItemCapability> lazyStorage;
 
 		
-		public EnergyCapabilityProvider(final ItemStack stack, SpecialItem item) {
+		public EnergyCapabilityProvider(final ItemStack stack, AssaultRife item) {
 			//Once SpecialItem is converted into a base for other items, change args to constructed values
 			this.storage = new EnergyItemCapability(10000, 100, 100) {
 			    @Override
