@@ -1,7 +1,7 @@
 package com.sovacoda.rfweaponry.core.event;
 
 import com.sovacoda.rfweaponry.Rfweaponry;
-import com.sovacoda.rfweaponry.common.items.SpecialItem;
+import com.sovacoda.rfweaponry.common.items.AssaultRife;
 import com.sovacoda.rfweaponry.core.init.Iteminit;
 import com.sovacoda.rfweaponry.core.network.NewNetwork;
 import com.sovacoda.rfweaponry.core.network.message.AnimMessage;
@@ -33,8 +33,8 @@ public class EventHandler {
 
 	@SubscribeEvent
 	public static void onBlockBreak(final BlockEvent.BreakEvent event) {
-		if(event.getState().getBlock().equals(Blocks.OAK_LOG))
-		event.getPlayer().addItem(ForgeRegistries.ITEMS.getValue(Iteminit.GUN_ITEM_REF.getId()).getDefaultInstance());
+		//if(event.getState().getBlock().equals(Blocks.OAK_LOG))
+		//event.getPlayer().addItem(ForgeRegistries.ITEMS.getValue(Iteminit.GUN_ITEM_REF.getId()).getDefaultInstance());
 	}
 	
 	@SubscribeEvent
