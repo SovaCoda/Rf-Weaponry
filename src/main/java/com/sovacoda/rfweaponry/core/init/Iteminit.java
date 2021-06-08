@@ -26,7 +26,5 @@ public class Iteminit {
 	public static final RegistryObject<PistolItemI> PISTOL_ITEM_I = ITEMS.register("pistol_item_i", 
 			() -> new PistolItemI(new Item.Properties().tab(ItemGroup.TAB_MISC).setISTER(() -> LaserPistolIRenderer::new)));
 	
-	//Hellllllloooo
-	
 
 }

@@ -7,6 +7,7 @@ import javax.annotation.Nullable;
 
 import com.sovacoda.rfweaponry.client.render.item.LaserGunRenderer;
 import com.sovacoda.rfweaponry.common.entities.LaserEntity;
+import com.sovacoda.rfweaponry.common.entities.TestProjectileEntity;
 import com.sovacoda.rfweaponry.core.capabilites.EnergyItemCapability;
 import com.sovacoda.rfweaponry.core.init.SoundEventinit;
 
@@ -48,7 +49,12 @@ import software.bernie.geckolib3.util.GeckoLibUtil;
 
 public class SpecialItem extends Item implements IAnimatable, ISyncable, ITickable{
 	
-	
+	public AnimationFactory factory = new AnimationFactory(this);
+    public String controllerName = "controller";
+    public static final int ANIM_OPEN = 0;
+    
+    public int useTime = 7200;
+    
     public SpecialItem(Properties properties)
     {
         super(properties.stacksTo(1));
@@ -65,11 +71,7 @@ public class SpecialItem extends Item implements IAnimatable, ISyncable, ITickab
     }
 	
     
-    public AnimationFactory factory = new AnimationFactory(this);
-    public String controllerName = "controller";
-    public static final int ANIM_OPEN = 0;
-    
-    public int useTime = 7200;
+
     
     private <P extends Item & IAnimatable> PlayState predicate(AnimationEvent<P> event) 
     {
@@ -115,6 +117,8 @@ public class SpecialItem extends Item implements IAnimatable, ISyncable, ITickab
 					GeckoLibNetwork.syncAnimation(target, this, id, ANIM_OPEN);
 					
 					LaserEntity laser = new LaserEntity(worldIn, playerIn );
+					
+
 					laser.shootFromRotation(playerIn ,playerIn.xRot, playerIn.yRot, 0, 3F, 0);
 					worldIn.addFreshEntity(laser);
 					worldIn.playSound((PlayerEntity) null, playerIn.getX(), playerIn.getY(), playerIn.getZ(), SoundEventinit.LASER_FIRING.get(), SoundCategory.PLAYERS, 1.0F, 1.0F);

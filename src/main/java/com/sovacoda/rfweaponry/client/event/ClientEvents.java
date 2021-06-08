@@ -10,9 +10,13 @@ import com.sovacoda.rfweaponry.core.network.message.AnimMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.FirstPersonRenderer;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.FOVUpdateEvent;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.TickEvent.Phase;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -25,7 +29,12 @@ import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 @Mod.EventBusSubscriber(modid = Rfweaponry.MOD_ID, bus = Bus.FORGE, value = Dist.CLIENT)
 public class ClientEvents {
 	@SubscribeEvent
-	public static void renderHand(RenderHandEvent event) {
-
+	public static void renderFOV(FOVUpdateEvent e) {
+		Item item = e.getEntity().getMainHandItem().getItem();
+		if(item instanceof SpecialItem) {
+			int use = ((SpecialItem) item).useTime;
+			e.setNewfov(use);
+		}
 	}
+	
 }

@@ -3,6 +3,7 @@ package com.sovacoda.rfweaponry.core.init;
 import com.sovacoda.rfweaponry.Rfweaponry;
 import com.sovacoda.rfweaponry.common.entities.LaserEntity;
 import com.sovacoda.rfweaponry.common.entities.LaserPistolIShotEntity;
+import com.sovacoda.rfweaponry.common.entities.TestProjectileEntity;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -27,6 +28,12 @@ public class EntityTypeinit {
 		    "laser_pistol_i_shot_entity", () -> 
 	EntityType.Builder.<LaserPistolIShotEntity>of(LaserPistolIShotEntity::new, 
 	EntityClassification.MISC).setUpdateInterval(1).build("rfweaponry:laser_pistol_i_shot_entity"));
+	
+	public static final RegistryObject<EntityType<TestProjectileEntity>> 
+	Test_Projectile_Entity = ENTITIES.register(
+		    "test_projectile_entity", () -> 
+	EntityType.Builder.<TestProjectileEntity>of(TestProjectileEntity::new, 
+	EntityClassification.MISC).setUpdateInterval(1).build("rfweaponry:test_projectile_entity"));
 
 	public static final RegistryObject<EntityType<LaserEntity>> LASER_ENTITY_REF = RegistryObject.of(new ResourceLocation("rfweaponry:laser_entity"), ForgeRegistries.ENTITIES);
 

@@ -19,5 +19,8 @@ public class RegisterEntityRennderers {
 	    
 	    RenderingRegistry.registerEntityRenderingHandler(EntityTypeinit.Laser_Pistol_I_Shot_Entity.get(),
 	    manager -> new LaserPistolIShotRenderer(manager));
+	    
+	    RenderingRegistry.registerEntityRenderingHandler(EntityTypeinit.Test_Projectile_Entity.get(),
+	    	    manager -> new TestProjectileEntityRenderer(manager));
 	}
 }

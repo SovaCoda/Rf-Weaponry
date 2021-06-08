@@ -2,6 +2,7 @@ package com.sovacoda.rfweaponry.common.items;
 
 import com.sovacoda.rfweaponry.common.entities.LaserEntity;
 import com.sovacoda.rfweaponry.common.entities.LaserPistolIShotEntity;
+import com.sovacoda.rfweaponry.common.entities.TestProjectileEntity;
 import com.sovacoda.rfweaponry.common.items.bases.RFGunItem;
 
 import net.minecraft.entity.player.PlayerEntity;
@@ -72,6 +73,7 @@ public class PistolItemI extends RFGunItem implements IAnimatable, ISyncable{
 			
 			LaserPistolIShotEntity shot1 = new LaserPistolIShotEntity(worldIn, playerIn );
 			LaserPistolIShotEntity shot2 = new LaserPistolIShotEntity(worldIn, playerIn );
+			
 			shot1.shootFromRotation(playerIn ,playerIn.xRot, playerIn.yRot+15, 0, 0.3F, 0);
 			shot2.shootFromRotation(playerIn ,playerIn.xRot, playerIn.yRot-15, 0, 0.3F, 0);
 			worldIn.addFreshEntity(shot1);
