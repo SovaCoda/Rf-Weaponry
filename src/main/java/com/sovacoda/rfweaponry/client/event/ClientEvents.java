@@ -2,7 +2,7 @@ package com.sovacoda.rfweaponry.client.event;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.sovacoda.rfweaponry.Rfweaponry;
-import com.sovacoda.rfweaponry.common.items.SpecialItem;
+import com.sovacoda.rfweaponry.common.items.AssaultRife;
 import com.sovacoda.rfweaponry.core.init.Iteminit;
 import com.sovacoda.rfweaponry.core.network.NewNetwork;
 import com.sovacoda.rfweaponry.core.network.message.AnimMessage;
@@ -31,8 +31,8 @@ public class ClientEvents {
 	@SubscribeEvent
 	public static void renderFOV(FOVUpdateEvent e) {
 		Item item = e.getEntity().getMainHandItem().getItem();
-		if(item instanceof SpecialItem) {
-			int use = ((SpecialItem) item).useTime;
+		if(item instanceof AssaultRife) {
+			int use = ((AssaultRife) item).useTime;
 			e.setNewfov(use);
 		}
 	}
