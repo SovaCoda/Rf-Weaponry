@@ -2,8 +2,8 @@ package com.sovacoda.rfweaponry.common.items.bases;
 
 import javax.annotation.Nullable;
 
-import com.sovacoda.rfweaponry.common.items.SpecialItem;
-import com.sovacoda.rfweaponry.common.items.SpecialItem.EnergyCapabilityProvider;
+import com.sovacoda.rfweaponry.common.items.AssaultRife;
+import com.sovacoda.rfweaponry.common.items.AssaultRife.EnergyCapabilityProvider;
 import com.sovacoda.rfweaponry.core.capabilites.EnergyItemCapability;
 
 import net.minecraft.item.Item;
